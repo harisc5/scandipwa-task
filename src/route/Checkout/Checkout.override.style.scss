@@ -1,0 +1,113 @@
+.Checkout {
+  &::before {
+    display: none;
+  }
+
+  .progress-bar {
+    width: 100%;
+    background: var(--breadcrumbs-background);
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+
+    .stepper-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+
+      &:last-child {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 12px;
+      }
+
+      &::before {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #ccc;
+        width: 100%;
+        top: 20px;
+        left: -50%;
+        z-index: 2;
+      }
+
+      &::after {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #ccc;
+        width: 100%;
+        top: 20px;
+        left: 50%;
+        z-index: 2;
+      }
+
+      .step-counter {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #ccc;
+        margin-bottom: 6px;
+
+        &.completed {
+          animation: animateCircle 2s forwards;
+        }
+      }
+
+      &.completed {
+        .step-counter {
+          animation: animateCircle 2s forwards;
+        }
+
+        &.render-after-line::after {
+          position: absolute;
+          content: "";
+          width: 100%;
+          top: 20px;
+          left: 50%;
+          z-index: 3;
+          transition: width 3s;
+          border-bottom: 2px solid var(--primary-base-color);
+          animation: animateBorder 2s forwards;
+        }
+
+        &::before {
+          border-bottom: 2px solid var(--primary-base-color);
+          animation: animateBorder 2s forwards;
+        }
+
+        &.before-last-step::before {
+          border-bottom: 2px solid var(--primary-base-color);
+          animation: animateBorder 2s forwards;
+        }
+      }
+    }
+  }
+}
+
+@keyframes animateBorder {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes animateCircle {
+  0% {
+    background: #ccc;
+  }
+  100% {
+    background-color: var(--primary-base-color);
+  }
+}
+
