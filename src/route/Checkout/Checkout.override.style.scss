@@ -6,9 +6,9 @@
   .progress-bar {
     width: 100%;
     background: var(--breadcrumbs-background);
-    min-height: 80px;
     display: flex;
     align-items: center;
+    min-height: var(--header-nav-height);
 
     .stepper-item {
       position: relative;
@@ -16,6 +16,7 @@
       flex-direction: column;
       align-items: center;
       flex: 1;
+      margin: 10px;
 
       &:last-child {
         display: none;
@@ -55,7 +56,6 @@
         height: 40px;
         border-radius: 50%;
         background: #ccc;
-        margin-bottom: 6px;
 
         &.completed {
           animation: animateCircle 2s forwards;
@@ -63,6 +63,8 @@
       }
 
       &.completed {
+        font-weight: bold;
+
         .step-counter {
           animation: animateCircle 2s forwards;
         }
